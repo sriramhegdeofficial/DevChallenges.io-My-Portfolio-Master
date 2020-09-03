@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Constants} from './../constants/constants';
-import useMediaQuery from 'react-hook-media-query';
+
 
 
 
@@ -9,23 +9,14 @@ import ProgressSkill from './../components/ProgressSkill';
 
 
 const  Home = () => {
-    const medium = useMediaQuery('(max-width: 1000px)');
-    const small = useMediaQuery('(max-width: 650px)')
-
-    const getWidthOfSidebar = () => {
-        if(medium) {
-            return 25;
-       }else {
-            return 0;
-        }
-    }
+    
     return(
         <React.Fragment>
             <Head>
                 <title>Welcome | Portfolio</title>
             </Head>
             <div className="wrapper">
-                <SideBar width={getWidthOfSidebar()}/>
+                <SideBar width={33.33 || 0}/>
                 <div className="main-wrapper">
                     <div className="skills-container">
                     <div className="skills-wrapper add-margin">

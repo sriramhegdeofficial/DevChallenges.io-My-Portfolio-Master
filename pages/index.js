@@ -1,65 +1,212 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { Constants} from './../constants/constants';
+import useMediaQuery from 'react-hook-media-query';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+import SideBar from './../components/SideBar';
+import ProgressSkill from './../components/ProgressSkill';
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+const  Home = () => {
+    const medium = useMediaQuery('(max-width: 1000px)');
+    const small = useMediaQuery('(max-width: 650px)')
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+    const getWidthOfSidebar = () => {
+        if(medium) {
+            return 25;
+       }else {
+            return 0;
+        }
+    }
+    return(
+        <React.Fragment>
+            <Head>
+                <title>Welcome | Portfolio</title>
+            </Head>
+            <div className="wrapper">
+                <SideBar width={getWidthOfSidebar()}/>
+                <div className="main-wrapper">
+                    <div className="skills-container">
+                    <div className="skills-wrapper add-margin">
+                        <h3 className="skills-title">Front end</h3>
+                        <div className="skill-container">
+                            <h4 className="skill-name">React</h4>
+                            <ProgressSkill value={70}/>
+                        </div>
+                        <div className="skill-container">
+                            <h4 className="skill-name">JavaScript</h4>
+                            <ProgressSkill value={63}/>
+                        </div>
+                        <div className="skill-container">
+                            <h4 className="skill-name">CSS</h4>
+                            <ProgressSkill value={55}/>
+                        </div>
+                        <div className="skill-container">
+                            <h4 className="skill-name">Redux</h4>
+                            <ProgressSkill value={29}/>
+                        </div>
+                        <div className="skill-container">
+                            <h4 className="skill-name">Nodejs</h4>
+                            <ProgressSkill value={90}/>
+                        </div>
+                      
+                    </div>
+                    <div className="skills-wrapper auto-height">
+                    <h3 className="skills-title">Design</h3>
+                        <div className="skill-container">
+                            <h4 className="skill-name">Figma</h4>
+                            <ProgressSkill value={55}/>
+                        </div>
+                        <div className="skill-container">
+                            <h4 className="skill-name">Illustrator</h4>
+                            <ProgressSkill value={88}/>
+                        </div>
+                    </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <style jsx>
+                {`
+                
+                .wrapper {
+                    width: 100%;
+                    display: flex;
+                    padding: ${Constants.mainPagePadding};
+                    
+                }
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+                
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+                .main-wrapper {
+                    width: 66.6666%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .skills-container  {
+                    display: flex;
+                    
+                }
+
+                .skills-wrapper {
+                    width: 50%;
+                    padding: ${Constants.skillsWrapperPadding};
+                    border-radius: ${Constants.portfolioBorderRadius};
+                    background: white;
+                }
+
+                .skill-container {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items : center;
+                    margin: ${Constants.skillContainerMargin} 0px;
+                }
+
+                .auto-height {
+                    align-self: flex-start;
+                }
+
+                .add-margin {
+                    margin-right: ${Constants.elementPadding};
+                }
+
+                .skills-title {
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 1.125rem;
+                    line-height: 22px;
+                    text-transform: uppercase;
+                    color: ${Constants.mainLightBlackColor};
+                }
+
+                
+
+                .skill-name {
+                    color: ${Constants.mainLightBlackColor};
+                    font-size: 1rem;
+                }
+
+                
+                @media screen and (max-width: 1000px) { 
+                    .wrapper {
+                        
+                        padding: ${Constants.mainPagePaddingMD};
+                    }
+
+                    .main-wrapper {
+                       width: 80%;
+                       padding: ${Constants.elementPaddingMD};
+                    }
+
+                    .skills-container {
+                        width: 100%;
+                    }
+
+                    .skills-wrapper {
+                        padding: ${Constants.skillsWrapperPaddingMD};
+                        
+                    }
+
+                    .skills-title {
+                        font-size: 0.95rem;
+                    }
+
+                    .skill-name {
+                        font-size: 0.8rem;
+                    }
+    
+
+                }
+               
+
+                @media screen and (max-width: 650px) { 
+                    .wrapper {
+                        padding: ${Constants.mainPagePaddingMD};
+                        flex-direction: column;
+                        min-width: 100%;
+                        align-items : center;
+                    }
+
+                    .main-wrapper {
+                        min-width: 100%;
+                        padding: 0;
+                    }
+
+                    .skills-container {
+                        flex-direction: column;
+                        width: 100%;
+                        
+                        
+                    }
+
+                    .skills-wrapper {
+                        width: 100%;
+                        margin-bottom: ${Constants.skillsWrapperMarginBottomSM};
+                        
+                    }
+
+                    .skills-title { 
+                        font-size: 1.125rem;
+                    }
+
+                    .skill-name {
+                        font-size: 1rem;
+                    }
+
+                }
+                
+
+           
+
+                
+                `}
+            </style>
+        </React.Fragment>
+    )
 }
+
+export default Home;

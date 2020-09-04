@@ -103,6 +103,7 @@ const ProjectDisplay = (props) => {
                     .button-secondary {
                         border: 1px solid ${Constants.buttonPrimaryBlue};
                         color: ${Constants.buttonPrimaryBlue};
+                        background: white;
                     }
 
                     .margin-right {

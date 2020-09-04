@@ -2,6 +2,15 @@ import {Constants} from './../constants/constants';
 
 const ProgressSkill = (props) => {
 
+    const getWidth = () => {
+        let value = props.value;
+        if(props.value > 100) {
+            value = 100;
+        }
+
+        return value;
+    }
+
     return(
         <React.Fragment>
 
@@ -23,14 +32,14 @@ const ProgressSkill = (props) => {
                         position: absolute;
                         top: 0;
                         left: 0;
-                        width: ${props.value}%;
+                        width: ${getWidth()}%;
                         content: '';
                         background: ${Constants.progressBarForeground};
                         height: 100%;
                         border-radius: ${Constants.portfolioBorderRadius};
                     }
 
-                    @media screen and (max-width: 1000px) {
+                    @media screen and (max-width: ${Constants.mediumSize}px) {
                        
         
                       

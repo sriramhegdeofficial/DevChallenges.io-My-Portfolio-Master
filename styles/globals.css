@@ -20,6 +20,7 @@ html {
 body {
    max-width: 1800px;
    background: #E4E5E0;
+   font-family: 'Montserrat', sans-serif;
 }
 
 :root {

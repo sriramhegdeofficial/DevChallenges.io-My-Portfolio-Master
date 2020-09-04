@@ -4,9 +4,11 @@ import { Constants} from './../constants/constants';
 
 
 
-import SideBar from './../components/SideBar';
+import SideBarAbout from '../components/SideBarAbout';
 import ProgressSkill from './../components/ProgressSkill';
+import SkillContainer from './../components/SkillContainer';
 
+import ProjectDisplay from './../components/ProjectDisplay';
 
 const  Home = () => {
     
@@ -16,47 +18,52 @@ const  Home = () => {
                 <title>Welcome | Portfolio</title>
             </Head>
             <div className="wrapper">
-                <SideBar width={33.33 || 0}/>
+                <SideBarAbout width={33.33 || 0}/>
                 <div className="main-wrapper">
                     <div className="skills-container">
                     <div className="skills-wrapper add-margin">
                         <h3 className="skills-title">Front end</h3>
-                        <div className="skill-container">
-                            <h4 className="skill-name">React</h4>
-                            <ProgressSkill value={70}/>
-                        </div>
-                        <div className="skill-container">
-                            <h4 className="skill-name">JavaScript</h4>
-                            <ProgressSkill value={63}/>
-                        </div>
-                        <div className="skill-container">
-                            <h4 className="skill-name">CSS</h4>
-                            <ProgressSkill value={55}/>
-                        </div>
-                        <div className="skill-container">
-                            <h4 className="skill-name">Redux</h4>
-                            <ProgressSkill value={29}/>
-                        </div>
-                        <div className="skill-container">
-                            <h4 className="skill-name">Nodejs</h4>
-                            <ProgressSkill value={90}/>
-                        </div>
+                        <SkillContainer value={80} name="react"/>
+                        <SkillContainer value={90} name="javaScript"/>
+                        <SkillContainer value={65} name="CSS"/>
+                        <SkillContainer value={70} name="redux"/>
+                        <SkillContainer value={97} name="nodejs"/>
                       
                     </div>
                     <div className="skills-wrapper auto-height">
-                    <h3 className="skills-title">Design</h3>
-                        <div className="skill-container">
-                            <h4 className="skill-name">Figma</h4>
-                            <ProgressSkill value={55}/>
-                        </div>
-                        <div className="skill-container">
-                            <h4 className="skill-name">Illustrator</h4>
-                            <ProgressSkill value={88}/>
+                        <h3 className="skills-title">Design</h3>
+                            <SkillContainer value={67} name="figma"/>
+                            <SkillContainer value={37} name="Illustrator"/>
                         </div>
                     </div>
+                    <div className="projects">Projects (3)</div>
+                    <div className="projects-display-wrapper">
+                        <ProjectDisplay 
+                        tags = {['html', 'css', 'responsive']}
+                        title="Recipe blog"
+                        imgName="recipe.jpg"
+                        
+                        >
+                        In this project, I work with HTML and CSS to create a responsive page . 
+                                The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
+                                diam sollicitudin id. Quisque feugiat malesuada molestie.
+                        </ProjectDisplay>
+                        <ProjectDisplay tags = {['html', 'css', 'responsive']}
+                        imgName="gallery.jpg"
+                        title="Gallery App">
+                        In this project, I work with HTML and CSS to create a responsive page . 
+                                The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
+                                diam sollicitudin id. Quisque feugiat malesuada molestie.
+                        </ProjectDisplay>
+                        <ProjectDisplay tags = {['html', 'css', 'responsive']}
+                        imgName="office.jpg"
+                        title="Office blog">
+                        In this project, I work with HTML and CSS to create a responsive page . 
+                                The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
+                                diam sollicitudin id. Quisque feugiat malesuada molestie.
+                        </ProjectDisplay>
                     </div>
-                   
-                </div>
+                   </div>
             </div>
             <style jsx>
                 {`
@@ -86,15 +93,10 @@ const  Home = () => {
                     padding: ${Constants.skillsWrapperPadding};
                     border-radius: ${Constants.portfolioBorderRadius};
                     background: white;
+                    
                 }
 
-                .skill-container {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items : center;
-                    margin: ${Constants.skillContainerMargin} 0px;
-                }
+             
 
                 .auto-height {
                     align-self: flex-start;
@@ -115,14 +117,33 @@ const  Home = () => {
                 }
 
                 
-
-                .skill-name {
+                .projects {
+                    text-transform: capitalize;
+                    width: 100%;
+                    background: white;
+                    border-radius: ${Constants.projectsBorderRadius};
+                    height: 66px;
+                    display: flex;
+                    align-items : center;
+                    justify-content: flex-start;
+                    padding: 0px ${Constants.projectsPadding};
+                    margin-top: ${Constants.projectsPadding};
+                    font-family: 'Montserrat', sans-serif;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 1.125rem;
+                    line-height: 22px;
                     color: ${Constants.mainLightBlackColor};
-                    font-size: 1rem;
                 }
 
+                .projects-display-wrapper {
+                    width: 100%;
+                    margin-top: ${Constants.projectsPadding};
+                }
                 
-                @media screen and (max-width: 1000px) { 
+
+                
+                @media screen and (max-width: ${Constants.mediumSize}px) { 
                     .wrapper {
                         
                         padding: ${Constants.mainPagePaddingMD};
@@ -146,15 +167,13 @@ const  Home = () => {
                         font-size: 0.95rem;
                     }
 
-                    .skill-name {
-                        font-size: 0.8rem;
-                    }
+                   
     
 
                 }
                
 
-                @media screen and (max-width: 650px) { 
+                @media screen and (max-width: ${Constants.smallSize}px) { 
                     .wrapper {
                         padding: ${Constants.mainPagePaddingMD};
                         flex-direction: column;
@@ -184,10 +203,7 @@ const  Home = () => {
                         font-size: 1.125rem;
                     }
 
-                    .skill-name {
-                        font-size: 1rem;
-                    }
-
+                   
                 }
                 
 

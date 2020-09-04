@@ -1,6 +1,8 @@
-import { Constants } from './../constants/constants';
+import { Constants } from '../constants/constants';
 import  EmailIcon  from '@material-ui/icons/Email';
+import CallIcon from '@material-ui/icons/Call';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 
 const useStyles = makeStyles({
@@ -13,8 +15,9 @@ const useStyles = makeStyles({
 
 
 
+
  
- const SideBar = (props) => {
+ const SideBarAbout = (props) => {
     const classes = useStyles();
     const getWidth = () => {
         if(props.width === 0) {
@@ -35,7 +38,7 @@ const useStyles = makeStyles({
                 <h2 className="contact">billy@example.com</h2>
             </div> 
             <div className="contact-wrapper">
-                <EmailIcon className={classes.Icon}/>
+                <CallIcon className={classes.Icon}/>
                 <h2 className="contact">(+603) 546 624 342</h2>
             </div> 
             <div className="portfolio-about">
@@ -56,6 +59,8 @@ const useStyles = makeStyles({
                 padding: ${Constants.elementPadding};
                 border-radius: ${Constants.portfolioBorderRadius};
                 background: white;
+                
+                
             }
 
             .portfolio-image-wrapper {
@@ -119,12 +124,12 @@ const useStyles = makeStyles({
                 line-height: 30px;
             }
 
-            @media screen and (max-width: 1000px) {
+            @media screen and (max-width: ${Constants.mediumSize}px) {
 
                 .sidebar-wrapper {
                     min-width: 250px;
-                    margin: ${Constants.elementPaddingMD};
-                    padding: ${Constants.elementPadding};
+                    margin-right: ${Constants.elementPadding};
+                    
                 }
 
                 .name {
@@ -148,13 +153,14 @@ const useStyles = makeStyles({
             }
         }
 
-        @media screen and (max-width: 650px) { 
+        @media screen and (max-width: ${Constants.smallSize}px) { 
             .sidebar-wrapper {
                 width: 100%;
                 min-width: 0;
                 word-wrap: break-word;
-                overflow-x: hidden;
+                margin-right: 0;
                 margin-bottom: ${Constants.mainPagePaddingMD}
+
             }
 
             .portfolio-about {
@@ -172,4 +178,8 @@ const useStyles = makeStyles({
     )
 }
 
-export default SideBar;
+export default SideBarAbout;
+
+SideBarAbout.propTypes = {
+    width : PropTypes.number.isRequired
+}

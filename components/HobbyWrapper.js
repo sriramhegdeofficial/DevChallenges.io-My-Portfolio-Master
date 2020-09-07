@@ -31,6 +31,7 @@ const HobbyWrapper = () => {
                         background: white;
                         border-radius: ${Constants.portfolioBorderRadius};
                         padding: ${Constants.elementPadding};
+                        margin-bottom: ${Constants.elementPadding}
                     }
                     
                    .title {

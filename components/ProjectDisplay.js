@@ -1,4 +1,5 @@
 import { Constants } from './../constants/constants';
+import PropTypes from 'prop-types';
 
 const ProjectDisplay = (props) => {
 
@@ -9,8 +10,9 @@ const ProjectDisplay = (props) => {
                 <img className="project-image" src={`/${props.imgName}`} alt="recipe image" />
                 <div className="projects-details-wrapper">
                         <div className="tags-wrapper">
-                            {
-                                props.tags.map(tag => <span className="tags">#{tag}</span>)
+                            {   
+                                props.portfolio ? 
+                                props.tags.map(tag => <span className="tags" key={tag}>#{tag}</span>) : null
                             }
                         </div>
                         <h2 className="projects-details-title">{props.title}</h2>
@@ -21,11 +23,18 @@ const ProjectDisplay = (props) => {
                             <button className="button button-primary margin-right"href="">Demo</button>
                             <button className="button button-secondary" href="">Code</button>
                         </div>
+                        <a className="blog-link">{props.link}</a>
                 </div>
             </div>
             <style jsx>
                 {
                     `
+
+                    .blog-link {
+                        display: ${props.portfolio ? "none" : "block"};
+                        color: ${Constants.buttonPrimaryBlue};
+                        cursor: pointer;
+                    }
 
                     .wrapper {
                         width: 100%;
@@ -34,15 +43,17 @@ const ProjectDisplay = (props) => {
                         display: flex;
                         padding: ${Constants.elementPadding};
                         background: white;
-
+                        margin: ${Constants.elementPadding} 0px;
+                        flex-direction : ${props.portfolio ? "row" : "row-reverse"};
+                        
                     }
 
                     .project-image {
                         width: 35%;
                         object-fit: cover;
                         border-radius: ${Constants.projectsBorderRadius};
-                        margin-right: ${Constants.elementPadding};
-                        
+                        margin-right: ${props.portfolio ? Constants.elementPadding : "0px"};
+                        margin-left: ${props.portfolio ? "0px" : Constants.elementPadding}
                     }
 
                     .projects-details-wrapper {
@@ -106,9 +117,15 @@ const ProjectDisplay = (props) => {
                         background: white;
                     }
 
+                  
+
                     .margin-right {
                         margin-right: 20px;
                     } 
+
+                    .display-button-wrapper {
+                        display: ${props.portfolio ? "block" : "none"};
+                    }
 
 
                     @media screen and (max-width: ${Constants.mediumSize}px) { 
@@ -116,6 +133,8 @@ const ProjectDisplay = (props) => {
                         .wrapper {
                            padding: ${Constants.elementPaddingMD};
                            min-width: 200px;
+                           margin-bottom: ${Constants.elementPaddingMD}
+
                         }
 
                         .project-image {
@@ -142,14 +161,17 @@ const ProjectDisplay = (props) => {
 
                         .wrapper {
                             flex-direction: column;
+                            
                         }
                             
                         .project-image {
                             width: 100%;
                             margin-bottom: 15px;
-                           
+                            margin-left: 0px;
                             
                         }
+
+                       
 
                         .tags-wrapper {
                             margin-bottom: 15px;
@@ -175,3 +197,11 @@ const ProjectDisplay = (props) => {
 }
 
 export default ProjectDisplay;
+
+ProjectDisplay.propTypes = {
+    tags: PropTypes.array,
+    imgName : PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    portfolio : PropTypes.bool.isRequired
+
+}

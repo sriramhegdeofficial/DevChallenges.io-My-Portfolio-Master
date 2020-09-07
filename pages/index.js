@@ -3,7 +3,8 @@ import { Constants} from './../constants/constants';
 
 
 
-
+import ExperienceWrapper from '../components/ExperienceWrapper';
+import HobbyWrapper from './../components/HobbyWrapper';
 import SideBarAbout from '../components/SideBarAbout';
 import ProgressSkill from './../components/ProgressSkill';
 import SkillContainer from './../components/SkillContainer';
@@ -18,12 +19,20 @@ const  Home = () => {
                 <title>Welcome | Portfolio</title>
             </Head>
             <div className="wrapper">
-                <SideBarAbout width={33.33 || 0}/>
+                <div className="sidebar-wrapper">
+                    <SideBarAbout />
+                    <ExperienceWrapper />
+                    <HobbyWrapper />
+                </div>
+                    
+                    
+               
+                
                 <div className="main-wrapper">
                     <div className="skills-container">
                     <div className="skills-wrapper add-margin">
                         <h3 className="skills-title">Front end</h3>
-                        <SkillContainer value={80} name="react"/>
+                        <SkillContainer value={80} name="react" />
                         <SkillContainer value={90} name="javaScript"/>
                         <SkillContainer value={65} name="CSS"/>
                         <SkillContainer value={70} name="redux"/>
@@ -42,7 +51,7 @@ const  Home = () => {
                         tags = {['html', 'css', 'responsive']}
                         title="Recipe blog"
                         imgName="recipe.jpg"
-                        
+                        portfolio={true}
                         >
                         In this project, I work with HTML and CSS to create a responsive page . 
                                 The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
@@ -50,19 +59,32 @@ const  Home = () => {
                         </ProjectDisplay>
                         <ProjectDisplay tags = {['html', 'css', 'responsive']}
                         imgName="gallery.jpg"
-                        title="Gallery App">
+                        title="Gallery App"
+                        portfolio={true}>
                         In this project, I work with HTML and CSS to create a responsive page . 
                                 The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
                                 diam sollicitudin id. Quisque feugiat malesuada molestie.
                         </ProjectDisplay>
                         <ProjectDisplay tags = {['html', 'css', 'responsive']}
                         imgName="office.jpg"
-                        title="Office blog">
+                        title="Office blog"
+                        portfolio={true} >
                         In this project, I work with HTML and CSS to create a responsive page . 
                                 The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
                                 diam sollicitudin id. Quisque feugiat malesuada molestie.
                         </ProjectDisplay>
                     </div>
+                    <div className="projects">Blogs (1)</div>
+                        <ProjectDisplay 
+                        tags={[]}
+                        imgName="css.jpg"
+                        title="How to organize your CSS"
+                        portfolio={false}
+                        link="dev.to" >
+                        In this project, I work with HTML and CSS to create a responsive page . 
+                                The design is from devchallenge.io. Donec aliquam est dui, vel vestibulum 
+                                diam sollicitudin id. Quisque feugiat malesuada molestie.
+                        </ProjectDisplay>
                    </div>
             </div>
             <style jsx>
@@ -75,8 +97,17 @@ const  Home = () => {
                     
                 }
 
+                .sidebar-wrapper {
+                    width: 33.33%;
+                    margin-right: ${Constants.elementPadding};
+                    padding: ${Constants.elementPadding};
+                    border-radius: ${Constants.portfolioBorderRadius};
+                    
+                    padding-top: 0px;
+                    padding-left: 0px;
+                    
+                }
                 
-
                 .main-wrapper {
                     width: 66.6666%;
                     display: flex;
@@ -138,7 +169,7 @@ const  Home = () => {
 
                 .projects-display-wrapper {
                     width: 100%;
-                    margin-top: ${Constants.projectsPadding};
+                   
                 }
                 
 
@@ -179,6 +210,12 @@ const  Home = () => {
                         flex-direction: column;
                         min-width: 100%;
                         align-items : center;
+                    }
+
+                    .sidebar-wrapper {
+                        width: 100%;
+                        margin: 0px;
+                        padding: 0px;
                     }
 
                     .main-wrapper {

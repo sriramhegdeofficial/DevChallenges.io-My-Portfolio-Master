@@ -19,13 +19,7 @@ const useStyles = makeStyles({
  
  const SideBarAbout = (props) => {
     const classes = useStyles();
-    const getWidth = () => {
-        if(props.width === 0) {
-            return 33.333;
-        } else {
-            return props.width;
-        }
-    }
+  
     return (
     <React.Fragment>
         <div className="sidebar-wrapper">
@@ -54,12 +48,12 @@ const useStyles = makeStyles({
         {
             `
             .sidebar-wrapper {
-                width: ${getWidth()}%;
+                width: 100%;
                 margin-right: ${Constants.elementPadding};
                 padding: ${Constants.elementPadding};
                 border-radius: ${Constants.portfolioBorderRadius};
                 background: white;
-                
+                margin-bottom: ${Constants.elementPadding};
                 
             }
 
@@ -127,7 +121,7 @@ const useStyles = makeStyles({
             @media screen and (max-width: ${Constants.mediumSize}px) {
 
                 .sidebar-wrapper {
-                    min-width: 250px;
+                    
                     margin-right: ${Constants.elementPadding};
                     
                 }
